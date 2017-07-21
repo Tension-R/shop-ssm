@@ -1,6 +1,7 @@
 package com.tension.service;
 
 import com.tension.bean.Item;
+import com.tension.bean.PageBean;
 
 
 public interface ItemService {
@@ -10,4 +11,10 @@ public interface ItemService {
      * @return
      */
     Item getItemById(long itemId);
+
+    /**
+     * 商品列表
+     * @return
+     */
+    PageBean<Item> listByPage(PageBean<Item> pageBean);
 }

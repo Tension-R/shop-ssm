@@ -26,4 +26,15 @@
         FROM tb_item
         WHERE id = #{itemId}
     </select>
+
+    <select id="listItemByPage" parameterType="Map" resultMap="itemResult">
+        SELECT
+        <include refid="columns"/>
+        FROM tb_item
+        LIMIT #{start},#{end}
+    </select>
+
+    <select id="getTotalNum" resultType="java.lang.Long">
+        SELECT count(id) FROM tb_item
+    </select>
 </mapper>
