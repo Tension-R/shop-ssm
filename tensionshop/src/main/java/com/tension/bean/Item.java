@@ -6,8 +6,8 @@ import java.sql.Date;
 public class Item {
     private long id;
     private String title;
-    private String address;
-    private int price;
+    private String sellPoint;
+    private double price;
     private int num;
     private String image;
     private long cid;
@@ -15,6 +15,15 @@ public class Item {
     private Date createTime;
     private Date updateTime;
     private String barcode;
+    private String desc;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public long getId() {
         return id;
@@ -32,15 +41,16 @@ public class Item {
         this.title = title;
     }
 
-    public String getAddress() {
-        return address;
+
+    public String getSellPoint() {
+        return sellPoint;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setSellPoint(String sellPoint) {
+        this.sellPoint = sellPoint;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -102,5 +112,23 @@ public class Item {
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", sellPoint='" + sellPoint + '\'' +
+                ", price=" + price +
+                ", num=" + num +
+                ", image='" + image + '\'' +
+                ", cid=" + cid +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", barcode='" + barcode + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
     }
 }

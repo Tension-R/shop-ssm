@@ -1,6 +1,7 @@
 package com.tension.dao;
 
 import com.tension.bean.Item;
+import com.tension.bean.ItemDesc;
 import com.tension.bean.PageBean;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -23,4 +24,15 @@ public interface ItemDao {
     List<Item> listItemByPage(@Param("start") int start, @Param("end") int end);
 
     long getTotalNum();
+
+    /**
+     * 添加商品到item表
+     * @return
+     */
+    int addItem(Item item);
+
+    /**
+     * 添加商品介绍到DESC
+     */
+    int addItemDesc(ItemDesc itemDesc);
 }

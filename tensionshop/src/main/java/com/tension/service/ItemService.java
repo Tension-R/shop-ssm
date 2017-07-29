@@ -1,6 +1,7 @@
 package com.tension.service;
 
 import com.tension.bean.Item;
+import com.tension.bean.ItemAddResult;
 import com.tension.bean.PageBean;
 
 
@@ -17,4 +18,6 @@ public interface ItemService {
      * @return
      */
     PageBean<Item> listByPage(PageBean<Item> pageBean);
+
+    ItemAddResult addItem(Item item,String desc);
 }
