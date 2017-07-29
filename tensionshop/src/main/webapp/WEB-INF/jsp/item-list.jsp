@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table class="easyui-datagrid" id="itemList" title="商品列表" 
-       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/item/list',method:'get',pageSize:10,pageList:[10,20,30,40    ],toolbar:toolbar">
+       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/item/list',method:'get',pageSize:10,pageList:[10,20,30,40],toolbar:toolbar">
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
@@ -8,7 +8,7 @@
             <th data-options="field:'title',width:200,align:'center'">商品标题</th>
             <th data-options="field:'cid',width:100,align:'center'">商品类别</th>
             <th data-options="field:'address',width:100,align:'center'">出售地</th>
-            <th data-options="field:'price',width:70,align:'center',formatter:TAOTAO.formatPrice">价格</th>
+            <th data-options="field:'price',width:70,align:'center'">价格</th>
             <th data-options="field:'num',width:70,align:'center'">库存数量</th>
             <th data-options="field:'barcode',width:100,align:'center'">条形码</th>
             <th data-options="field:'status',width:60,align:'center',formatter:TAOTAO.formatItemStatus">状态</th>
