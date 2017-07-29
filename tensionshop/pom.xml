@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.personBlog</groupId>
-    <artifactId>personBlog</artifactId>
+    <groupId>com.tensionshop</groupId>
+    <artifactId>tensionshop</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>personBlog Maven Webapp</name>
+    <name>tensionshop Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <!-- 添加sevlet支持 -->
@@ -105,7 +105,16 @@
             <artifactId>mybatis-spring</artifactId>
             <version>1.3.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.miemiedev</groupId>
+            <artifactId>mybatis-paginator</artifactId>
+            <version>1.2.15</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>3.4.2</version>
+        </dependency>
         <!--  jdbc驱动包 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -154,32 +163,58 @@
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
+            <version>2.5</version>
         </dependency>
         <!-- Apache工具组件 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
         </dependency>
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
+            <version>3.3</version>
         </dependency>
         <!-- Jackson Json处理工具包 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>2.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.7.4</version>
         </dependency>
         <!-- httpclient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
+            <version>4.3.5</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.github.tobato</groupId>-->
+            <!--<artifactId>fastdfs-client</artifactId>-->
+            <!--<version>1.25.4-RELEASE</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.3</version>
         </dependency>
     </dependencies>
     <build>
-        <finalName>personBlog</finalName>
+        <finalName>tensionshop</finalName>
     </build>
 </project>
