@@ -7,7 +7,7 @@
     <resultMap id="itemResult" type="Item">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
-        <result property="address" column="address"/>
+        <result property="sellPoint" column="address"/>
         <result property="price" column="price"/>
         <result property="num" column="num"/>
         <result property="image" column="image"/>
@@ -37,4 +37,11 @@
     <select id="getTotalNum" resultType="java.lang.Long">
         SELECT count(id) FROM tb_item
     </select>
+
+    <insert id="addItem" parameterType="Item">
+        INSERT INTO tb_item VALUE (#{id},#{title},#{sellPoint},#{price},#{num},#{image},#{cid},#{status},#{createTime},#{updateTime},#{barcode})
+    </insert>
+    <insert id="addItemDesc" parameterType="ItemDesc">
+        INSERT INTO tb_item_desc VALUE (#{itemId},#{itemDesc},#{createTime},#{updateTime})
+    </insert>
 </mapper>
