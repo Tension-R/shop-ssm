@@ -31,7 +31,7 @@ var TT = TAOTAO = {
 	},
 	// 格式化时间
 	formatDateTime : function(val,row){
-		var now = new Date(val);
+        var now = new Date(val);
     	return now.format("yyyy-MM-dd hh:mm:ss");
 	},
 	// 格式化连接
@@ -103,7 +103,7 @@ var TT = TAOTAO = {
     },
     
     // 初始化选择类目组件
-    initItemCat : function(data){
+    	initItemCat : function(data){
     	$(".selectItemCat").each(function(i,e){
     		var _ele = $(e);
     		if(data && data.cid){
@@ -190,30 +190,30 @@ var TT = TAOTAO = {
     },
     
     changeItemParam : function(node,formId){
-    	$.getJSON("/item/param/cid/" + node.id,function(data){
-			  if(data.status == 200 && data.data){
-				 $("#"+formId+" .params").show();
-				 var paramData = JSON.parse(data.data.paramData);
-				 var html = "<ul>";
-				 for(var i in paramData){
-					 var pd = paramData[i];
-					 html+="<li><table>";
-					 html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
-					 
-					 for(var j in pd.params){
-						 var ps = pd.params[j];
-						 html+="<tr><td class=\"param\"><span>"+ps+"</span>: </td><td><input autocomplete=\"off\" type=\"text\"/></td></tr>";
-					 }
-					 
-					 html+="</li></table>";
-				 }
-				 html+= "</ul>";
-				 $("#"+formId+" .params td").eq(1).html(html);
-			  }else{
-				 $("#"+formId+" .params").hide();
-				 $("#"+formId+" .params td").eq(1).empty();
-			  }
-		  });
+        $.getJSON("/item/param/query/itemcatid/" + node.id,function(data){
+            if(data.status == 200 && data.data){
+                $("#"+formId+" .params").show();
+                var paramData = JSON.parse(data.data.paramData);
+                var html = "<ul>";
+                for(var i in paramData){
+                    var pd = paramData[i];
+                    html+="<li><table>";
+                    html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
+
+                    for(var j in pd.params){
+                        var ps = pd.params[j];
+                        html+="<tr><td class=\"param\"><span>"+ps+"</span>: </td><td><input autocomplete=\"off\" type=\"text\"/></td></tr>";
+                    }
+
+                    html+="</li></table>";
+                }
+                html+= "</ul>";
+                $("#"+formId+" .params td").eq(1).html(html);
+            }else{
+                $("#"+formId+" .params").hide();
+                $("#"+formId+" .params td").eq(1).empty();
+            }
+        });
     },
     getSelectionsIds : function (select){
     	var list = $(select);

@@ -8,8 +8,8 @@
         	<th data-options="field:'itemCatId',width:80">商品类目ID</th>
         	<th data-options="field:'itemCatName',width:100">商品类目</th>
             <th data-options="field:'paramData',width:300,formatter:formatItemParamData">规格(只显示分组名称)</th>
-            <th data-options="field:'created',width:130,align:'center',formatter:TAOTAO.formatDateTime">创建日期</th>
-            <th data-options="field:'updated',width:130,align:'center',formatter:TAOTAO.formatDateTime">更新日期</th>
+            <th data-options="field:'createTime',width:130,align:'center',formatter:TAOTAO.formatDateTime">创建日期</th>
+            <th data-options="field:'updateTime',width:130,align:'center',formatter:TAOTAO.formatDateTime">更新日期</th>
         </tr>
     </thead>
 </table>
@@ -18,7 +18,7 @@
 <script>
 
 	function formatItemParamData(value , index){
-		var json = JSON.parse(value);
+        var json = JSON.parse(value);
 		var array = [];
 		$.each(json,function(i,e){
 			array.push(e.group);
