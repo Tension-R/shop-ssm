@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="tensionshop:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="personBlog.war">
-      <element id="artifact" artifact-name="tensionshop:war exploded" />
-    </root>
-  </artifact>
-</component>
