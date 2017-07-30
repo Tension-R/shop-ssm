@@ -1,10 +1,9 @@
 package com.tension.service.Impl;
 
-import com.tension.bean.Item;
-import com.tension.bean.ItemAddResult;
-import com.tension.bean.ItemDesc;
-import com.tension.bean.PageBean;
+import com.alibaba.druid.support.json.JSONUtils;
+import com.tension.bean.*;
 import com.tension.dao.ItemDao;
+import com.tension.dao.ItemParamItemDao;
 import com.tension.service.ItemService;
 import com.tension.util.IDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -20,6 +20,9 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemDao itemDao;
 
+    @Autowired
+    private ItemParamItemDao itemParamItemDao;
+
     public Item getItemById(long itemId) {
         Item item = itemDao.getItemById(itemId);
         return item;
@@ -27,6 +30,7 @@ public class ItemServiceImpl implements ItemService {
 
     public PageBean<Item> listByPage(PageBean<Item> pageBean) {
         List<Item> itemList = itemDao.listItemByPage(pageBean.getStart(),pageBean.getEnd());
+
         //记录查询分页的结果
         pageBean.setResult(itemList);
         //记录查询总数
@@ -34,7 +38,7 @@ public class ItemServiceImpl implements ItemService {
         return pageBean;
     }
 
-    public ItemAddResult addItem(Item item, String desc) {
+    public ItemAddResult addItem(Item item, String desc, String itemParam) {
         //生成商品ID
         long itemId = IDUtil.getItemId();
         item.setId(itemId);
@@ -54,6 +58,30 @@ public class ItemServiceImpl implements ItemService {
         itemDesc.setUpdateTime(sqlDate);
 
         itemDao.addItemDesc(itemDesc);
+
+        //添加商品规格参数处理
+        ItemParamItem itemParamItem = new ItemParamItem();
+        itemParamItem.setItemId(itemId);
+        itemParamItem.setParamData(itemParam);
+        itemParamItem.setCreateTime(sqlDate);
+        itemParamItem.setUpdateTime(sqlDate);
+
+        itemParamItemDao.insertItemParamItem(itemParamItem);
         return ItemAddResult.ok();
     }
+
+//    /**
+//     * 根据商品id查询规格参数
+//     * @param itemId
+//     * @return
+//     */
+//    public String itemParamItemResult(long itemId) {
+//        List<ItemParamItem> itemParamItemList = itemParamItemDao.getItemParamHtml(itemId);
+//        if (itemParamItemList == null || itemParamItemList.isEmpty()){
+//            return "";
+//        }
+//        ItemParamItem itemParamItem = itemParamItemList.get(0);
+//        String paramData = itemParamItem.getParamData();
+//        return null;
+//    }
 }

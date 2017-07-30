@@ -3,59 +3,58 @@ package com.tension.web;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.tension.bean.Item;
 import com.tension.bean.ItemAddResult;
+import com.tension.bean.ItemParam;
 import com.tension.bean.PageBean;
-import com.tension.service.ItemService;
+import com.tension.service.ItemParamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import static com.tension.util.RespWriteUtil.respWrite;
 
 /**
- * 商品查询Controller
+ * 商品规格参数模板管理Controller
  */
 @Controller
-public class ItemController {
+@RequestMapping("/item/param")
+public class ItemParamController {
 
     @Autowired
-    private ItemService itemService;
+    private ItemParamService itemParamService;
 
-    @RequestMapping("/item/{itemId}")
+    @RequestMapping("/query/itemcatid/{cid}")
     @ResponseBody
-    public Item getItemById(@PathVariable long itemId, HttpServletResponse resp) throws IOException {
-        Item item = itemService.getItemById(itemId);
-        resp.setContentType("text/html;charset=utf-8");
-        PrintWriter writer = resp.getWriter();
-        writer.write(item.getSellPoint());
-        return null;
+    public ItemAddResult getItemCatByCid(@PathVariable long cid){
+        ItemAddResult itemAddResult = itemParamService.getItemParamByCid(cid);
+        return itemAddResult;
     }
 
-    /**
-     * 分页查询商品列表
-     * @param page
-     * @param rows
-     * @param resp
-     * @return
-     * @throws IOException
-     */
-    @RequestMapping(value = "/item/list")
-    public String listBlogType(
+    @RequestMapping("/save/{cid}")
+    @ResponseBody
+    public ItemAddResult addItemParam(@PathVariable long cid,String paramData){
+        ItemAddResult result = itemParamService.addItemParam(cid,paramData);
+        return result;
+    }
+
+    @RequestMapping("/list")
+    public String listItemParam(
             @RequestParam(value = "page", required = false) String page,
             @RequestParam(value = "rows", required = false) String rows,
             HttpServletResponse resp) throws IOException {
 
         //根据页面传回的参数初始化pageBean
-        PageBean<Item> itemPageBean = new PageBean<Item>(
+        PageBean<ItemParam> itemPageBean = new PageBean<ItemParam>(
                 Integer.parseInt(page), Integer.parseInt(rows));
 
         //设置分页结果和总数
-        itemPageBean = itemService.listByPage(itemPageBean);
+        itemPageBean = itemParamService.listItemParam(itemPageBean);
 
         //使用阿里巴巴的FastJson创建jsonObject
         JSONObject jsonObject = new JSONObject();
@@ -73,15 +72,4 @@ public class ItemController {
 
         return null;
     }
-
-
-    @RequestMapping(value = "/item/save",method = RequestMethod.POST)
-    @ResponseBody
-    public ItemAddResult addItem(Item item,String desc,String itemParams){
-        ItemAddResult result = itemService.addItem(item,desc,itemParams);
-        return result;
-    }
-
-
-
 }

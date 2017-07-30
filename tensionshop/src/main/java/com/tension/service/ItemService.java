@@ -19,5 +19,7 @@ public interface ItemService {
      */
     PageBean<Item> listByPage(PageBean<Item> pageBean);
 
-    ItemAddResult addItem(Item item,String desc);
+    ItemAddResult addItem(Item item,String desc, String itemParam);
+
+//    String itemParamItemResult(long itemId);
 }

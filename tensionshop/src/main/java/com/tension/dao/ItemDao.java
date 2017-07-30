@@ -2,6 +2,7 @@ package com.tension.dao;
 
 import com.tension.bean.Item;
 import com.tension.bean.ItemDesc;
+import com.tension.bean.ItemParamItem;
 import com.tension.bean.PageBean;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -35,4 +36,5 @@ public interface ItemDao {
      * 添加商品介绍到DESC
      */
     int addItemDesc(ItemDesc itemDesc);
+
 }
