@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tension.dao.ContentDao">
+
+    <resultMap id="ContentResult" type="Content">
+        <id property="id" column="id"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="title" column="title"/>
+        <result property="titleDesc" column="title_desc"/>
+        <result property="url" column="url"/>
+        <result property="pic" column="pic"/>
+        <result property="pic2" column="pic2"/>
+        <result property="content" column="content"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="columns">id, category_id, title, title_desc, url, pic, pic2, content, create_time, update_time</sql>
+
+    <select id="getContentList" resultMap="ContentResult">
+        SELECT
+        <include refid="columns"/>
+        FROM tb_content
+        WHERE category_id = #{categoryId}
+        LIMIT #{start},#{end}
+    </select>
+
+    <select id="getTotalNum" resultType="int">
+        SELECT count(*) from tb_content
+    </select>
+
+    <insert id="addContent" parameterType="com.tension.bean.Content">
+        INSERT INTO tb_content (`category_id`,title,title_desc,url,pic,pic2,content,create_time,update_time)
+                VALUE (#{categoryId},#{title},#{titleDesc},#{url},#{pic},#{pic2},#{content},#{createTime},#{updateTime})
+    </insert>
+</mapper>
