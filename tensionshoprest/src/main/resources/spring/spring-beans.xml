@@ -71,4 +71,45 @@
         <aop:advisor advice-ref="txAdvice"
                      pointcut="execution(* com.tension.rest.service.*.*(..))"/>
     </aop:config>
+    <!--配置redis客户端单机版-->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="host" value="192.168.0.110"/>
+        <constructor-arg name="port" value="6379"/>
+    </bean>
+    <!--配置redis客户端实现类-->
+    <bean id="jedisClientSingle" class="com.tension.rest.component.Impl.JedisClientSingle"/>
+
+    <!--&lt;!&ndash;配置redis客户端集群版&ndash;&gt;-->
+    <!--<bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">-->
+        <!--<constructor-arg>-->
+            <!--<set>-->
+                <!--<bean class="redis.clients.jedis.HostAndPort">-->
+                    <!--<constructor-arg name="host" value="127.0.0.1"/>-->
+                    <!--<constructor-arg name="port" value="7001"/>-->
+                <!--</bean>-->
+                <!--<bean class="redis.clients.jedis.HostAndPort">-->
+                    <!--<constructor-arg name="host" value="127.0.0.1"/>-->
+                    <!--<constructor-arg name="port" value="7002"/>-->
+                <!--</bean>-->
+                <!--<bean class="redis.clients.jedis.HostAndPort">-->
+                    <!--<constructor-arg name="host" value="127.0.0.1"/>-->
+                    <!--<constructor-arg name="port" value="7003"/>-->
+                <!--</bean>-->
+                <!--<bean class="redis.clients.jedis.HostAndPort">-->
+                    <!--<constructor-arg name="host" value="127.0.0.1"/>-->
+                    <!--<constructor-arg name="port" value="7004"/>-->
+                <!--</bean>-->
+                <!--<bean class="redis.clients.jedis.HostAndPort">-->
+                    <!--<constructor-arg name="host" value="127.0.0.1"/>-->
+                    <!--<constructor-arg name="port" value="7005"/>-->
+                <!--</bean>-->
+                <!--<bean class="redis.clients.jedis.HostAndPort">-->
+                    <!--<constructor-arg name="host" value="127.0.0.1"/>-->
+                    <!--<constructor-arg name="port" value="7006"/>-->
+                <!--</bean>-->
+            <!--</set>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+
+    <!--<bean id="jedisClientCluster" class="com.tension.rest.component.Impl.JedisClientCluster"/>-->
 </beans>
