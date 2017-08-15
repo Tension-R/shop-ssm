@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tensionshopsearch:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="tensionshop-search.war">
+      <element id="artifact" artifact-name="tensionshopsearch:war exploded" />
+    </root>
+  </artifact>
+</component>
